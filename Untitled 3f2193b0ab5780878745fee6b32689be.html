@@ -1,0 +1,798 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Untitled</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+	/* Paint a complete callout box on every PDF page fragment. */
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3f2193b0-ab57-8087-8745-fee6b32689be" class="page sans"><header><h1 class="page-title" dir="auto"></h1><p class="page-description" dir="auto"></p></header><div class="page-body"><figure id="3f2193b0-ab57-80e8-9335-e2756d153ba9" class="image" data-notion-image="Untitled/title_-_medium.png" dir="ltr"><a href="Untitled/title_-_medium.png"><img style="width:704px" src="Untitled/title_-_medium.png"/></a></figure><h1 id="3f2193b0-ab57-80b0-b1d2-ebeeb339d0de" class="" dir="auto">Feature Wiki &amp; Mechanics Guide</h1><p id="3f2193b0-ab57-8057-b7ff-eb155fca8b2d" class="" dir="auto">Welcome to the Better Combat datapack wiki! This guide explains all features, reworked mechanics, and weapon differences in a clear, user-friendly way.</p><hr id="3f2193b0-ab57-80d0-8b12-ebcf42d4f22e" dir="auto"/><h2 id="3f2193b0-ab57-80d3-82a5-d8db2aca22d2" class="" dir="auto">The Attacking State</h2><p id="3f2193b0-ab57-80af-abcc-f72881ec029b" class="" dir="auto">The combat system activates automatically whenever you hold an eligible weapon (Swords, Axes, Scythes).<br/>While in the <strong>Attacking State</strong>, you will notice key improvements over vanilla combat:</p><ul id="3f2193b0-ab57-8023-a304-c1beb884d59f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Attack Indicator:</strong> A red indicator is going to appear over the entities that shows exactly where your strike will land.</li></ul><ul id="3f2193b0-ab57-802a-b41f-ed00f25f4bcd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Area Attacks:</strong> Instead of relying only on the standard vanilla system, weapons will let you project a frontal attack area where your hits will land.</li></ul><hr id="3f2193b0-ab57-8067-9984-d32f175f8eaa" dir="auto"/><h2 id="3f2193b0-ab57-804c-8f52-e197fee3b40e" class="" dir="auto">Untouchables</h2><p id="3f2193b0-ab57-8010-a2dd-c8aab131c1ef" class="" dir="auto">To prevent unwanted friendly damage (such as accidentally striking your pet or a villager while fighting off monsters), the datapack has an <strong>untouchables</strong> entity list that won&#x27;t take damage from your area attaccks (although if you don&#x27;t use a reworked weapon you will still hit them).<br/>If you intentionally want to hit an untouchable mob, simply sneak while attacking.</p><p id="3f2193b0-ab57-8041-a1ef-fd9240b44482" class="" dir="auto">List:</p><ul id="3f2193b0-ab57-80fc-ac54-d48876107f46" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Villagers</li></ul><ul id="3f2193b0-ab57-8005-8a92-ca09556ebd5b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Golems</li></ul><ul id="3f2193b0-ab57-8056-97d3-d064bd5cf756" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Tamed mobs</li></ul><ul id="3f2193b0-ab57-80ca-93f5-ee26762a236f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Baby mobs</li></ul><ul id="3f2193b0-ab57-80ed-8630-f7c3582aba51" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Zombified Piglins</li></ul><ul id="3f2193b0-ab57-80d6-bd70-d80233a3c962" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Name-tagged entities</li></ul><hr id="3f2193b0-ab57-80c7-ad46-c27bf72df4f2" dir="auto"/><h2 id="3f2193b0-ab57-80cd-b17b-d29d2c60655a" class="" dir="auto">Swords</h2><p id="3f2193b0-ab57-80b3-9516-fe3177af0f5e" class="" dir="auto">Swords are the premier crowd-control weapon, built to handle groups of enemies efficiently. The weak vanilla sweeping effect has been replaced with full-damage area coverage.</p><p id="3f2193b0-ab57-80ba-be92-d9c1652f8ec9" class="" dir="auto"><strong>Range</strong>: 3.0 blocks</p><p id="3f2193b0-ab57-809f-a523-d7ab384119b6" class="" dir="auto"><strong>Normal Attack:</strong><br/>A wide frontal swing. Unlike vanilla sweeping (which deals minimal area damage), this attack hits <em>all</em> valid enemies in the sweep area for <strong>100% of your weapon&#x27;s base damage</strong>.</p><blockquote id="3f2193b0-ab57-80be-b9c0-c35acfb7d081" class="" dir="auto"><figure id="3f3193b0-ab57-8030-99a5-debc92d0bdb1" class="image" data-notion-image="Untitled/sword-normal.gif" dir="ltr"><a href="Untitled/sword-normal.gif"><img style="width:384px" src="Untitled/sword-normal.gif"/></a></figure></blockquote><p id="3f2193b0-ab57-80ed-97a2-eab4f0f86b03" class="" dir="auto"><strong>Sprint Attack:</strong><br/>Instead of hitting an entire area, it targets <strong>only the nearest enemy</strong>, applying standard <strong>bonus sprint knockback</strong> to push dangerous threats away.</p><blockquote id="3f2193b0-ab57-8004-bd20-d445eb3760ac" class="" dir="auto"><figure id="3f3193b0-ab57-8018-8c8f-eea53612f356" class="image" data-notion-image="Untitled/sword-sprint.gif" dir="ltr"><a href="Untitled/sword-sprint.gif"><img style="width:384px" src="Untitled/sword-sprint.gif"/></a></figure></blockquote><p id="3f2193b0-ab57-8088-91db-f453a24633c0" class="" dir="auto"><strong>Critical Attack:</strong><br/>A heavy downward strike executed while falling. Like the sprint attack, this focuses on <strong>only the nearest enemy</strong>, applying bonus damage (+50%).</p><blockquote id="3f2193b0-ab57-80e3-b1f6-c97eab23d4e5" class="" dir="auto"><figure id="3f3193b0-ab57-8006-bcc5-d56a50e28049" class="image" data-notion-image="Untitled/sword-normal%201.gif" dir="ltr"><a href="Untitled/sword-normal%201.gif"><img style="width:384px" src="Untitled/sword-normal%201.gif"/></a></figure></blockquote><hr id="3f2193b0-ab57-8035-9cfb-dd1913fabb1a" dir="auto"/><h2 id="3f2193b0-ab57-801d-84a6-d4d79fae68eb" class="" dir="auto">Axes</h2><p id="3f2193b0-ab57-80fe-b351-c88e1e59526c" class="" dir="auto">Axes represent hard-hitting, high-precision weapons tailored for single-target combat.<br/>Axes can now receive traditional sword combat enchantments (such as <em>Sharpness</em>) via the enchanting table!<br/>If an axe is enchanted with a fighting enchant, its texture becomes a Battle Axe.</p><p id="3f2193b0-ab57-80a9-a9a8-d77edf00de8f" class="" dir="auto"><strong>Range</strong>: 3.0 blocks</p><p id="3f2193b0-ab57-80c2-a670-fca967ebc941" class="" dir="auto"><strong>Normal Attack:</strong><br/>Unlike swords, normal axe attacks do <strong>not</strong> sweep across multiple targets. An axe strike hits <strong>only the single nearest enemy</strong>.</p><blockquote id="3f2193b0-ab57-8088-9e4d-c816e5b5d952" class="" dir="auto"><figure id="3f3193b0-ab57-80fb-be60-f03f7dfdadc6" class="image" data-notion-image="Untitled/axe-normal.gif" dir="ltr"><a href="Untitled/axe-normal.gif"><img style="width:384px" src="Untitled/axe-normal.gif"/></a></figure></blockquote><p id="3f2193b0-ab57-8042-b22a-ce687085c9ae" class="" dir="auto"><strong>Sprint Attack:</strong><br/>A single-target strike that delivers <strong>bonus sprint knockback</strong>.</p><blockquote id="3f2193b0-ab57-8071-9fae-c818d999265b" class="" dir="auto"><figure id="3f3193b0-ab57-809a-8c69-eb8121af3d9c" class="image" data-notion-image="Untitled/axe-sprint.gif" dir="ltr"><a href="Untitled/axe-sprint.gif"><img style="width:384px" src="Untitled/axe-sprint.gif"/></a></figure></blockquote><p id="3f2193b0-ab57-8022-8608-d1f8b9029b05" class="" dir="auto"><strong>Critical Attack:</strong><br/>A heavy downward strike executed while falling. Like the sprint attack, this focuses on <strong>only the nearest enemy</strong>, applying bonus damage (+50%).</p><blockquote id="3f2193b0-ab57-80b6-8d24-e01c6d81c990" class="" dir="auto"><figure id="3f3193b0-ab57-8021-8a2f-fb275574ff34" class="image" data-notion-image="Untitled/axe-crit.gif" dir="ltr"><a href="Untitled/axe-crit.gif"><img style="width:384px" src="Untitled/axe-crit.gif"/></a></figure></blockquote><hr id="3f2193b0-ab57-80f6-891e-c20c3a66366d" dir="auto"/><h2 id="3f2193b0-ab57-8017-96f3-f7276ab6ab0b" class="" dir="auto">Hoes &amp; Scythes</h2><p id="3f2193b0-ab57-8087-8eb9-cdcf576af829" class="" dir="auto">Hoes are now viable combat alternatives, serving as technical, extended-range weapons.<br/>Hoes can now receive traditional sword combat enchantments (such as <em>Sharpness</em>) via the enchanting table!<br/>If an hoe is enchanted with a fighting enchant, its texture becomes a Scythe.</p><p id="3f2193b0-ab57-80e2-8644-fbc498064ebe" class="" dir="auto"><strong>Range</strong>: 4.0 blocks</p><p id="3f2193b0-ab57-8058-9bc9-c3c18f6a8209" class="" dir="auto"><strong>Attack speed</strong>: 3</p><p id="3f2193b0-ab57-8077-bdc5-c61bdeff0929" class="" dir="auto"><mark class="highlight-default" data-notion-highlight="default"><strong>Damage by tiers</strong></mark><mark class="highlight-default" data-notion-highlight="default">:</mark><div class="indented"><details id="3f2193b0-ab57-802e-acc0-ea195f72b038" open="" class="toggle" dir="auto"><summary>show</summary><div class="indented"><div id="3f2193b0-ab57-804b-8db8-e70d7bb65b5f" class="column-list" data-notion-column-list="" dir="auto"><div id="3f2193b0-ab57-802c-818c-f1ab43c0d801" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="3f2193b0-ab57-8052-97d3-f339c1a880f0" class="" dir="auto">Wooden: </p><p id="3f2193b0-ab57-8059-bae0-df238d121a76" class="" dir="auto">Stone: </p><p id="3f2193b0-ab57-807e-a25d-cea41c5a0478" class="" dir="auto">Copper: </p><p id="3f2193b0-ab57-809d-bac6-ec9226aca8d0" class="" dir="auto">Golden: </p><p id="3f2193b0-ab57-805b-9603-ca545220f126" class="" dir="auto">Iron: </p><p id="3f2193b0-ab57-802f-a9cf-c2be5f3b1b60" class="" dir="auto">Diamond: </p><p id="3f2193b0-ab57-8031-9206-f106686e2162" class="" dir="auto">Netherite: </p></div><div id="3f2193b0-ab57-80c1-889f-e874829ac12a" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><p id="3f2193b0-ab57-8079-ac31-df4e0b0d0c6e" class="" dir="auto">2</p><p id="3f2193b0-ab57-809b-8360-eff38dd9589b" class="" dir="auto">2</p><p id="3f2193b0-ab57-807a-902a-e575e35fc6b4" class="" dir="auto">3</p><p id="3f2193b0-ab57-8026-add9-e62b83303311" class="" dir="auto">2</p><p id="3f2193b0-ab57-80e6-b48b-feea228fe114" class="" dir="auto">3</p><p id="3f2193b0-ab57-80c7-95d7-c953dc17e2c1" class="" dir="auto">4</p><p id="3f2193b0-ab57-801a-87c5-c5b86fa7b38c" class="" dir="auto">4</p></div></div></div></details></div></p><p id="3f2193b0-ab57-8076-a91e-d7cd08f6eb27" class="" dir="auto"><strong>Normal Attack:</strong><br/>A massive sweep attack with superior range. Its signature feature is the <strong>low knockback</strong>. Instead of scattering enemies across the area, it deals damage while keeping foes grouped in place, allowing you to chain consecutive combo hits with ease.</p><blockquote id="3f2193b0-ab57-80d1-b29a-ef89dee6bde9" class="" dir="auto"><figure id="3f3193b0-ab57-800a-9b93-efeb4610d003" class="image" data-notion-image="Untitled/scythe-normal.gif" dir="ltr"><a href="Untitled/scythe-normal.gif"><img style="width:384px" src="Untitled/scythe-normal.gif"/></a></figure></blockquote><p id="3f2193b0-ab57-801c-9773-f4a1bbe70ca0" class="" dir="auto"><strong>Sprint Attack:</strong><br/>Still sprinting lets you apply <strong>bonus sprint knockback</strong> to only the nearest target.</p><blockquote id="3f2193b0-ab57-8014-a18d-e610e2de5764" class="" dir="auto"><figure id="3f3193b0-ab57-8067-a0ee-dc45d99fb862" class="image" data-notion-image="Untitled/scythe-sprint.gif" dir="ltr"><a href="Untitled/scythe-sprint.gif"><img style="width:384px" src="Untitled/scythe-sprint.gif"/></a></figure></blockquote><p id="3f2193b0-ab57-8032-a9fc-dd1965905974" class="" dir="auto"><strong>Critical Attack:</strong><br/>A focused single-target strike. It benefits from the falling critical damage bonus (+50%) while preserving the <strong>low knockback</strong> profile of normal attacks.</p><blockquote id="3f2193b0-ab57-80f1-8a57-f5ff3274ffd4" class="" dir="auto"><figure id="3f3193b0-ab57-80dc-9e21-ed77efe7b66b" class="image" data-notion-image="Untitled/scythe-crit.gif" dir="ltr"><a href="Untitled/scythe-crit.gif"><img style="width:384px" src="Untitled/scythe-crit.gif"/></a></figure></blockquote><hr id="3f2193b0-ab57-8063-bd10-c6d355b78cc1" dir="auto"/><h2 id="3f2193b0-ab57-8058-a4d1-e454f83213fd" class="" dir="auto">Spears</h2><p id="3f2193b0-ab57-801c-bca0-e1e099a50fb1" class="" dir="auto">Spears remain almost untouched from vanilla: the attack speed has been tweeked to be the same throughout different tiers.</p><p id="3f2193b0-ab57-80d2-9be3-d1b7f0ff1959" class="" dir="auto">Attack speed: 1.5</p><blockquote id="3f3193b0-ab57-800a-a9a7-feacee9cde29" class="" dir="auto"><figure id="3f3193b0-ab57-808d-a06b-e04b6bd07665" class="image" data-notion-image="Untitled/spear-normal.gif" dir="ltr"><a href="Untitled/spear-normal.gif"><img style="width:384px" src="Untitled/spear-normal.gif"/></a></figure></blockquote><p id="3f2193b0-ab57-8086-aada-d14e8598e939" class="" dir="auto">
+</p><hr id="3f2193b0-ab57-80bd-a299-e9648988687c" dir="auto"/><h2 id="3f2193b0-ab57-80ba-bfca-f64ea6a6f2b8" class="" dir="auto">Enchantments</h2><ul id="3f2193b0-ab57-80ab-af02-ffcdd3c7dda3" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Sweeping Edge</strong>: this enchantment is no more since all sweeping attacks now deal by default 100% of the weapon&#x27;s damage.</li></ul><ul id="3f2193b0-ab57-8055-9f5e-f05a2dbdcda6" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Knockback</strong>: the knockback enchant won&#x27;t add bonus knockback while doing Normal Attacks, but will add additional bonus knockback on Sprint Attacks.</li></ul><ul id="3f2193b0-ab57-80b8-8ce5-ce397319f21d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Impaling</strong>: Now the impaling enchant will <strong>add damage to all entities touching water</strong> (Bedrock edition parity), instead of damaging only water-based entities.</li></ul><ul id="3f2193b0-ab57-80e5-957b-e7a1546c6e5f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Smite &amp; Bane of Arthropods</strong>: These work just like vanilla, but due to Minecraft&#x27;s limitations if just one non-effected entity is present in the attacking area, the damage bonus won&#x27;t be applied to any of the entities. This isn&#x27;t an intented feature and is marked as a bug.</li></ul><ul id="3f2193b0-ab57-809b-b53a-e7623c8b4fe4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Axes and hoes</strong>: These tools can also be enchanted with combat enchantments; when it heppeans its textures become respectively a Battle Axe or a Scythe.</li></ul><blockquote id="3f2193b0-ab57-8096-a7ef-c656a7e10eed" class="" dir="auto"><figure id="3f3193b0-ab57-80d1-924b-f5ca746b8fdf" class="image" data-notion-image="Untitled/enchanting.gif" dir="ltr"><a href="Untitled/enchanting.gif"><img style="width:657px" src="Untitled/enchanting.gif"/></a></figure></blockquote></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
